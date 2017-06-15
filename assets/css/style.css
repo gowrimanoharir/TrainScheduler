@@ -1,0 +1,51 @@
+
+.hfnt{
+	font-size: 50px;
+}
+
+.ts-cnt{
+	border: 1px solid blue;
+	margin: 20px;	
+}
+
+.at-cnt{
+	border: 1px solid blue;
+	margin: 20px;	
+}
+
+.ts-hbck, .at-hbck{
+	background-color: blue;
+	color: #fff;
+}
+
+.ts-hfnt{
+	font-size: 30px;
+	margin: 10px;
+}
+
+.at-hfnt{
+	font-size: 30px;
+	margin: 10px;
+}
+
+.at-label{
+	display: block;
+	margin-left: 10px;
+}
+
+.at-input{
+	display: block;
+	width: 90%;
+	margin: 10px;
+}
+
+.at-submit{
+	margin: 10px;
+}
+
+/*Change width and background for footer section*/
+.footer{
+	width: 100%;
+	background-color: #1c1e22;
+	padding-top: 5px;
+}

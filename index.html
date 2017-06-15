@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Scheduler</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<!--CSS to style the website using Bootstrap classes-->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!--Link the reset css-->
+	<style type="text/css" src="assets/css/reset.css"></style>
+
+	<!--Link the css with additional styles-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!--Link the Google fonts-->
+	
+	<link href="https://fonts.googleapis.com/css?family=Mogra|Handlee" rel="stylesheet">
+
+</head>
+<body>
+<div class="container cntr">
+	<!--Header definition-->
+	<div class="text-center hfnt">Train Scheduler</div>
+
+	
+		<!--section to hold the Timer and Question-->
+		<section class="container ts-cnt">
+
+			<!--Train Schedule display-->
+			<div class='ts-hbck'>
+				<span class='ts-hfnt'>Current Train Schedule<span>
+			</div>
+			<div class='ts-tbl'>
+				<div class="col-md-1"></div>
+				<table class="col-md-10">
+					<thead>
+						<tr>
+							<th class="col-md-2">Train Name</th>
+							<th class="col-md-2">Destination</th>	
+							<th class="col-md-2">Frequency (min)</th>	
+							<th class="col-md-2">Next Arrival</th>	
+							<th class="col-md-2">Minutes Away</th>				
+						</tr>
+					</thead>
+					<tbody id="js-trntbl">
+						<tr></tr>
+					</tbody>
+				</table>
+				<div class="col-md-1"></div>
+			</div>
+
+		</section>
+	
+		<section class="container at-cnt">
+			<!--User form display-->
+			<div class='at-hbck'>
+				<span class='at-hfnt'>Add Train</span>
+			</div>
+			<div>
+				<form id="js-addtrn">
+						
+					<label class='at-label'>
+						Train Name
+					</label>
+
+					<input type="text" name="train name" autofocus="yes" id="js-tname"class='at-input'>
+
+					<label class='at-label'>
+						Destination
+					</label>
+
+					<input type="text" name="destination" id="js-tdest" class='at-input'>
+
+					<label class='at-label'>
+						First Train Time (HH:mm - military time)
+					</label>
+
+					<input type="text" name="first train time" id="js-ttime" class='at-input'>
+
+					<label class='at-label'>
+						Frequency
+					</label>
+
+					<input type="text" name="frequency" id="js-tfreq" class='at-input'>
+
+					<button type="submit" id="js-submit"class='at-submit'>
+						Submit
+					</button>
+				</form>
+			</div>
+
+		</section>
+			
+	</div>
+</div>
+
+	<!--section for footer-->
+	<div class="container footer navbar-fixed-bottom">
+	     <p class="text-center">
+	     	&copy; 2017 Copyright Gowri M Rajasekaran
+	     </p>
+	</div>
+
+	<!-- Added link to the jQuery Library -->
+  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  	<!--Link the javascript-->
+	<script type="text/javascript" src="assets/javascript/main.js"></script>
+</body>
+</html>
