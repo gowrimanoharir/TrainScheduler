@@ -1,17 +1,11 @@
 // Initialize Firebase
-var config = {
-apiKey: "AIzaSyBKY4W79RYm1ZBBT8ABhd4tJBtH2wa4RDU",
-authDomain: "train-scheduler-21ec5.firebaseapp.com",
-databaseURL: "https://train-scheduler-21ec5.firebaseio.com",
-projectId: "train-scheduler-21ec5",
-storageBucket: "train-scheduler-21ec5.appspot.com",
-messagingSenderId: "525124097857"
-};
 firebase.initializeApp(config);
 
 
 // Create a variable to reference the database
 var database = firebase.database();
+var pgUpdate = null;
+
 
 var tschedule = {
 	trName: null,
@@ -40,20 +34,20 @@ var tschedule = {
 		this.trDest=trn.TrnDest;
 		this.trFstTime=trn.TrnFirstTime;
 		this.trFreq=trn.TrnFrequency;
-		this.trMins=this.calcMinutesTillTrn();
-		this.trNextArrival=this.calcNextArrival();
+		this.trMins=this.calcMinutesTillTrn(this.trFstTime, this.trFreq);
+		this.trNextArrival=this.calcNextArrival(this.trMins);
 		this.displaySchedule();
 	},
 
-	calcMinutesTillTrn: function(){
-		var firstTime = moment(this.trFstTime, "hh:mm").subtract(1, "years");
+	calcMinutesTillTrn: function(ftim, freq){
+		var firstTime = moment(ftim, "hh:mm").subtract(1, "years");
 		var diffTime = moment().diff(firstTime, "minutes")
-		var tmReminder = diffTime%this.trFreq;
-		return(this.trFreq-tmReminder);
+		var tmReminder = diffTime%freq;
+		return(freq-tmReminder);
 	},
 
-	calcNextArrival: function(){
-		var nextTrain = moment().add(this.trMins, "minutes");
+	calcNextArrival: function(mins){
+		var nextTrain = moment().add(mins, "minutes");
 		return(moment(nextTrain).format("hh:mm A"));
 	},
 
@@ -65,11 +59,30 @@ var tschedule = {
 	}
 };
 
+function dispUpdate(){
+	clearTimeout(pgUpdate);
+	var table = $("table tbody");
+    table.find('tr').each(function () {
+        var $tds = $(this).find('td');
+		var ftim = $tds.eq(2).text();
+		var freq = $tds.eq(3).text();
+		var mins = ts.calcMinutesTillTrn(ftim, freq);
+		$tds.eq(5).text(mins);
+		var nextTrain = ts.calcNextArrival(mins);
+		$tds.eq(4).text(nextTrain);
+    });
+
+	pgUpdate=setTimeout(dispUpdate, 60000);
+}
+
+var ts=tschedule;
+
 $(document).ready(function(){
-	var ts=tschedule;
+
 	$('#js-submit').on('click', function(event){
 
 		event.preventDefault();
+
 		ts.trName=$('#js-tname').val().trim();
 		ts.trDest=$('#js-tdest').val().trim();
 		ts.trFstTime=$('#js-ttime').val().trim();
@@ -85,11 +98,13 @@ $(document).ready(function(){
 		ts.resetForm();
 	});
 
-
 	database.ref().on("child_added", function(snapshot) {
 		if(snapshot.val()){
 			var trn=snapshot.val();
 			ts.readDBdata(trn);
-	}
+		}
 	});	
+
+	dispUpdate();
+
 });
