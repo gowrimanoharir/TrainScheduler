@@ -23,45 +23,59 @@
 <body>
 <div class="container cntr">
 	<!--Header definition-->
-	<div class="text-center hfnt">Train Scheduler</div>
+	<div class="container jumbotron text-center hfnt">
+		<h1>Train Scheduler</h1>
+	</div>
 
 	
 		<!--section to hold the Timer and Question-->
 		<section class="container ts-cnt">
 
-			<!--Train Schedule display-->
-			<div class='ts-hbck'>
-				<span class='ts-hfnt'>Current Train Schedule<span>
+		<div class='row'>
+
+		<!--Train Schedule display-->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title ts-hfnt">Current Train Schedule</h3>
 			</div>
+
+          <div class="panel-body">
+
 			<div class='ts-tbl'>
-				<div class="col-md-1"></div>
-				<table class="col-md-10">
+				<table class="col-md-12">
 					<thead>
 						<tr>
-							<th class="col-md-2">Train Name</th>
-							<th class="col-md-2">Destination</th>	
-							<th class="col-md-2">Frequency (min)</th>	
-							<th class="col-md-2">Next Arrival</th>	
-							<th class="col-md-2">Minutes Away</th>				
+							<th class="col-md-2 text-center">Train Name</th>
+							<th class="col-md-2 text-center">Destination</th>	
+							<th class="col-md-2 text-center">First Train Time</th>
+							<th class="col-md-2 text-center">Frequency (min)</th>	
+							<th class="col-md-2 text-center">Next Arrival</th>	
+							<th class="col-md-2 text-center">Minutes Away</th>				
 						</tr>
 					</thead>
-					<tbody id="js-trntbl">
+					<tbody id="js-trntbl" class="text-center">
 						<tr></tr>
 					</tbody>
 				</table>
-				<div class="col-md-1"></div>
 			</div>
-
+			
+		</div>
+		</div>
 		</section>
 	
 		<section class="container at-cnt">
 			<!--User form display-->
-			<div class='at-hbck'>
-				<span class='at-hfnt'>Add Train</span>
+		<div class='row'>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title at-hfnt">Add Train</h3>
 			</div>
-			<div>
+
+          <div class="panel-body">
+
 				<form id="js-addtrn">
-						
+					
 					<label class='at-label'>
 						Train Name
 					</label>
@@ -91,7 +105,8 @@
 					</button>
 				</form>
 			</div>
-
+			</div>
+			</div>
 		</section>
 			
 	</div>
@@ -103,6 +118,13 @@
 	     	&copy; 2017 Copyright Gowri M Rajasekaran
 	     </p>
 	</div>
+	
+	<!-- Added link to the Firbase-->
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+
+	
+	<!-- Added link to the moment.js Library -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>	
 
 	<!-- Added link to the jQuery Library -->
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

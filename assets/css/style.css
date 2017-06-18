@@ -1,30 +1,38 @@
 
-.hfnt{
-	font-size: 50px;
-}
-
-.ts-cnt{
-	border: 1px solid blue;
-	margin: 20px;	
-}
-
-.at-cnt{
-	border: 1px solid blue;
-	margin: 20px;	
-}
-
-.ts-hbck, .at-hbck{
-	background-color: blue;
+.jumbotron{
+	background-color: #000;
 	color: #fff;
 }
 
+.hfnt{
+	margin-top: 0;
+	font-size: 50px;
+	margin-right: 0;
+}
+
+.at-cnt{
+	margin-bottom: 60px;	
+}
+
+tr>th{
+	padding-bottom: 10px;
+}
+
+tr>td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-top: 1px solid #ddd;
+}
+
 .ts-hfnt{
-	font-size: 30px;
+	font-size: 20px;
+	font-weight: bold;
 	margin: 10px;
 }
 
 .at-hfnt{
-	font-size: 30px;
+	font-size: 20px;
+	font-weight: bold;
 	margin: 10px;
 }
 
@@ -35,7 +43,7 @@
 
 .at-input{
 	display: block;
-	width: 90%;
+	width: 95%;
 	margin: 10px;
 }
 
