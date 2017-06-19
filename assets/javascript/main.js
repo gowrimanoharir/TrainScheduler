@@ -6,7 +6,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var pgUpdate = null;
 
-
 var tschedule = {
 	trName: null,
 	trDest: null,
@@ -15,20 +14,27 @@ var tschedule = {
 	trNextArrival: null,
 	trMins: null,
 
-	displaySchedule: function(){
+	displaySchedule: function(key){
 		console.log('in disp db');
 		var nrow=$('<tr>');
-		nrow.append('<td class=\'col-md-2\'>'+this.trName+'</td>');
-		nrow.append('<td class=\'col-md-2\'>'+this.trDest+'</td>');
-		nrow.append('<td class=\'col-md-2\'>'+this.trFstTime+'</td>');
-		nrow.append('<td class=\'col-md-2\'>'+this.trFreq+'</td>');
+		nrow.append('<td contenteditable=\'true\' class=\'col-md-2\'>'+this.trName+'</td>');
+		nrow.append('<td contenteditable=\'true\' class=\'col-md-2\'>'+this.trDest+'</td>');
+		nrow.append('<td contenteditable=\'true\' class=\'col-md-2\'>'+this.trFstTime+'</td>');
+		nrow.append('<td contenteditable=\'true\' class=\'col-md-1\'>'+this.trFreq+'</td>');
 		nrow.append('<td class=\'col-md-2\'>'+this.trNextArrival+'</td>');
-		nrow.append('<td class=\'col-md-2\'>'+this.trMins+'</td>');
+		nrow.append('<td class=\'col-md-1\'>'+this.trMins+'</td>');
+		var ndet=$('<td>');
+		ndet.addClass('col-md-1 glyphicon glyphicon-pencil js-edit').data('data-id', key);;
+		nrow.append(ndet);
+		var ndet1=$('<td>');
+		ndet1.addClass('col-md-1 glyphicon glyphicon-remove js-delete').data('data-id', key);;
+		nrow.append(ndet1);
+		console.log(ndet1.data('data-id'));
 		$('#js-trntbl').append(nrow);
 
 	},
 
-	readDBdata: function(trn){
+	readDBdata: function(trn, key){
 		console.log('in read db');
 		this.trName=trn.TrnName;
 		this.trDest=trn.TrnDest;
@@ -36,7 +42,7 @@ var tschedule = {
 		this.trFreq=trn.TrnFrequency;
 		this.trMins=this.calcMinutesTillTrn(this.trFstTime, this.trFreq);
 		this.trNextArrival=this.calcNextArrival(this.trMins);
-		this.displaySchedule();
+		this.displaySchedule(key);
 	},
 
 	calcMinutesTillTrn: function(ftim, freq){
@@ -98,12 +104,34 @@ $(document).ready(function(){
 		ts.resetForm();
 	});
 
+	$('#js-trntbl').on('click', '.js-delete', function(){
+		console.log('del: '+$(this).data('data-id'));
+		var key=$(this).data('data-id');
+		database.ref().child(key).remove();
+		$(this).closest('tr').remove();
+	});
+
+	$('#js-trntbl').on('click', '.js-edit', function(){
+		console.log('edit: '+$(this).data('data-id'));
+		var key=$(this).data('data-id');
+		var updates={
+			TrnName: 'IMUpdated',
+			TrnDest: 'Upd Town',
+			TrnFirstTime: '13:00',
+			TrnFrequency: '4',			
+		};
+		database.ref().child(key).update(updates);
+	});
+
 	database.ref().on("child_added", function(snapshot) {
 		if(snapshot.val()){
 			var trn=snapshot.val();
-			ts.readDBdata(trn);
+			var key=snapshot.key;
+			ts.readDBdata(trn, key);
 		}
 	});	
+
+
 
 	dispUpdate();
 
