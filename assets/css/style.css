@@ -18,10 +18,28 @@ tr>th{
 	padding-bottom: 10px;
 }
 
-tr>td{
+.td-design{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border-top: 1px solid #ddd;
+}
+
+.td-rmpad{
+	padding: 2px;
+
+}
+
+.errtxt{
+	color: red;
+}
+
+.td-edit{
+	padding: 1px;
+	width: 100%;
+}
+
+.td-edit:focus{
+	border: 1px solid blue;
 }
 
 .ts-hfnt{

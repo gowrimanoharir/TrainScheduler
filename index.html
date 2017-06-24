@@ -40,7 +40,7 @@
 			</div>
 
           <div class="panel-body">
-
+				<p id="js-editErr" class="errtxt"><p>
 			<div class='ts-tbl'>
 				<table class="col-md-12">
 					<thead>
@@ -56,6 +56,7 @@
 						</tr>
 					</thead>
 					<tbody id="js-trntbl" class="text-center">
+
 					</tbody>
 				</table>
 			</div>
@@ -74,7 +75,7 @@
 			</div>
 
           <div class="panel-body">
-
+				<p id="js-addErr" class="errtxt"><p>
 				<form id="js-addtrn">
 					
 					<label class='at-label'>
@@ -90,16 +91,16 @@
 					<input type="text" name="destination" id="js-tdest" class='at-input'>
 
 					<label class='at-label'>
-						First Train Time (HH:mm - military time)
+						First Train Time (HH:mm - military time)  <span id="js-fttErr" class='errtxt'></span>
 					</label>
 
-					<input type="text" name="first train time" id="js-ttime" class='at-input'>
+					<input type="text" size="5" name="first train time" id="js-ttime" class='at-input'>
 
 					<label class='at-label'>
-						Frequency
+						Frequency (in Minutes) <span id="js-freqErr" class='errtxt'></span>
 					</label>
 
-					<input type="text" name="frequency" id="js-tfreq" class='at-input'>
+					<input type="number" name="frequency" id="js-tfreq" class='at-input'>
 
 					<button type="submit" id="js-submit"class='at-submit'>
 						Submit
