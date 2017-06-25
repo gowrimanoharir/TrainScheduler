@@ -17,109 +17,118 @@
 
 	<!--Link the Google fonts-->
 	
-	<link href="https://fonts.googleapis.com/css?family=Mogra|Handlee" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
 
 </head>
 <body>
-<div class="container cntr">
+<div class="container">
 	<!--Header definition-->
-	<div class="container jumbotron text-center hfnt">
+	<div class="container jumbotron text-center">
 		<h1>Train Scheduler</h1>
+		<p>Personal train dashboard</p>
 	</div>
 
-	
-		<!--section to hold the Timer and Question-->
-		<section class="container ts-cnt">
 
+	<!--Train Schedule display section-->
+	<section class="container ts-cnt">
 		<div class='row'>
 
-		<!--Train Schedule display-->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title ts-hfnt">Current Train Schedule</h3>
-			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading phdr">
+					<h3 class="panel-title ts-hfnt">Current Train Schedule</h3>
+				</div>
+				
+				<div class="panel-body">
+					<!--placeholder to display error message-->		
+					<p id="js-editErr" class="errtxt"><p>
 
-          <div class="panel-body">
-				<p id="js-editErr" class="errtxt"><p>
-			<div class='ts-tbl'>
-				<table class="col-md-12">
-					<thead>
-						<tr>
-							<th class="col-md-2 text-center">Train Name</th>
-							<th class="col-md-2 text-center">Destination</th>	
-							<th class="col-md-2 text-center">First Train Time</th>
-							<th class="col-md-1 text-center">Frequency (min)</th>	
-							<th class="col-md-2 text-center">Next Arrival</th>	
-							<th class="col-md-1 text-center">Minutes Away</th>
-							<th class="col-md-1"></th>	
-							<th class="col-md-1"></th>	
-						</tr>
-					</thead>
-					<tbody id="js-trntbl" class="text-center">
 
-					</tbody>
-				</table>
+					<div class='ts-tbl'>
+						<table class="col-md-12">
+							<!--define table headers-->
+							<thead>
+								<tr>
+									<th class="col-md-2 text-center">Train Name<sup class='mandatory'>*</sup></th>
+									<th class="col-md-2 text-center">Destination<sup class='mandatory'>*</sup></th>	
+									<th class="col-md-2 text-center">First Train Time(HH:mm)<sup class='mandatory'>*</sup></th>
+									<th class="col-md-1 text-center">Frequency (min)<sup class='mandatory'>*</sup></th>	
+									<th class="col-md-2 text-center">Next Arrival</th>	
+									<th class="col-md-1 text-center">Minutes Away</th>
+									<th class="col-md-1 text-center"">Edit</th>	
+									<th class="col-md-1 text-center"">Delete</th>	
+								</tr>
+							</thead>
+
+							<!--placeholder to add train info as rows when user submits info-->
+							<tbody id="js-trntbl" class="text-center">
+
+							</tbody>
+						</table>
+					</div>
+				
+				</div>
 			</div>
-			
 		</div>
-		</div>
-		</section>
+	</section>
 	
-		<section class="container at-cnt">
-			<!--User form display-->
+	<!--User form display-->
+	<section class="container at-cnt">
 		<div class='row'>
 
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title at-hfnt">Add Train</h3>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title at-hfnt">Add Train</h3>
+				</div>
+
+				<div class="panel-body">
+
+					<!--placeholder to display error message-->		
+					<p id="js-addErr" class="errtxt"><p>
+
+					<!--Define form labels and inputs with type as text or number as required-->
+					<form id="js-addtrn">
+						
+						<label class='at-label'>
+							Train Name<sup class='mandatory'>*</sup> 
+						</label>
+
+						<input type="text" name="train name" autofocus="yes" id="js-tname" class='at-input' required>
+
+						<label class='at-label'>
+							Destination<sup class='mandatory'>*</sup> 
+						</label>
+
+						<input type="text" name="destination" id="js-tdest" class='at-input' required>
+
+						<label class='at-label'>
+							First Train Time (HH:mm - military time)<sup class='mandatory'>*</sup>   <span id="js-fttErr" class='errtxt'></span>
+						</label>
+
+						<input type="text" size="5" name="first train time" id="js-ttime" class='at-input' required>
+
+						<label class='at-label'>
+							Frequency (in Minutes)<sup class='mandatory'>*</sup>  <span id="js-freqErr" class='errtxt'></span>
+						</label>
+
+						<input type="number" name="frequency" id="js-tfreq" class='at-input' required>
+
+						<button type="submit" id="js-submit" class='at-submit'>
+							Submit
+						</button>
+					</form>
+				</div>
 			</div>
-
-          <div class="panel-body">
-				<p id="js-addErr" class="errtxt"><p>
-				<form id="js-addtrn">
-					
-					<label class='at-label'>
-						Train Name
-					</label>
-
-					<input type="text" name="train name" autofocus="yes" id="js-tname"class='at-input'>
-
-					<label class='at-label'>
-						Destination
-					</label>
-
-					<input type="text" name="destination" id="js-tdest" class='at-input'>
-
-					<label class='at-label'>
-						First Train Time (HH:mm - military time)  <span id="js-fttErr" class='errtxt'></span>
-					</label>
-
-					<input type="text" size="5" name="first train time" id="js-ttime" class='at-input'>
-
-					<label class='at-label'>
-						Frequency (in Minutes) <span id="js-freqErr" class='errtxt'></span>
-					</label>
-
-					<input type="number" name="frequency" id="js-tfreq" class='at-input'>
-
-					<button type="submit" id="js-submit"class='at-submit'>
-						Submit
-					</button>
-				</form>
-			</div>
-			</div>
-			</div>
-		</section>
+		</div>
+	</section>
 			
-	</div>
 </div>
 
-	<!--section for footer-->
-	<div class="container footer navbar-fixed-bottom">
-	     <p class="text-center">
-	     	&copy; 2017 Copyright Gowri M Rajasekaran
-	     </p>
-	</div>
+<!--section for footer-->
+<div class="container footer navbar-fixed-bottom">
+     <p class="text-center">
+     	&copy; 2017 Copyright Gowri M Rajasekaran
+     </p>
+</div>
 	
 	<!-- Added link to the Firbase-->
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>

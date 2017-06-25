@@ -1,23 +1,50 @@
 
+/*Define jumbotron styles to change height and colors*/
+
 .jumbotron{
-	background-color: #000;
-	color: #fff;
+	background-color: #232127;
+	height: 5%;
+	padding-top: 25px;
+	padding-bottom: 25px;
 }
 
-.hfnt{
-	margin-top: 0;
-	font-size: 50px;
-	margin-right: 0;
+
+.jumbotron h1, .jumbotron p{
+	margin-top: 10px;
+	font-family: 'Bungee Inline', cursive;
+	color: #DDEAE9;
 }
 
-.at-cnt{
-	margin-bottom: 60px;	
+/*Text color for error text and mandatory asterisk display*/
+.errtxt, .mandatory{
+	color: red;
 }
 
-tr>th{
+/*Define panel styles to change padding and colors*/
+.panel-default>.panel-heading{
+	background-color: #232127;
+	color: #DDEAE9;
+}
+
+.panel-body{
+	padding-top: 5px;
+}
+
+/*Train schedule section header font style*/
+
+.ts-hfnt{
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px;
+}
+
+/*Train schedule table header style*/
+thead{
 	padding-bottom: 10px;
+	background-color: #DDEAE9;
 }
 
+/*Train schedule table details style*/
 .td-design{
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -25,12 +52,12 @@ tr>th{
 }
 
 .td-rmpad{
-	padding: 2px;
-
+	padding: 3px;
 }
 
-.errtxt{
-	color: red;
+/*Train schedule table row and details style in edit mode*/
+.tr-edit{
+	background-color: #ADC7EA;
 }
 
 .td-edit{
@@ -42,18 +69,21 @@ tr>th{
 	border: 1px solid blue;
 }
 
-.ts-hfnt{
-	font-size: 20px;
-	font-weight: bold;
-	margin: 10px;
+
+/*Add train section styles*/
+.at-cnt{
+	margin-bottom: 60px;	
 }
 
+
+/*Add train header styles*/
 .at-hfnt{
 	font-size: 20px;
 	font-weight: bold;
 	margin: 10px;
 }
 
+/*Add train form label & input box styles*/
 .at-label{
 	display: block;
 	margin-left: 10px;
@@ -65,8 +95,12 @@ tr>th{
 	margin: 10px;
 }
 
+/*Submit button style*/
 .at-submit{
 	margin: 10px;
+	background-color: #232127;
+	color: #DDEAE9;
+	border-style: hidden;
 }
 
 /*Change width and background for footer section*/
@@ -74,4 +108,5 @@ tr>th{
 	width: 100%;
 	background-color: #1c1e22;
 	padding-top: 5px;
+
 }
